@@ -8,7 +8,7 @@ Browser extension that adds new features to FurAffinity, including a new recomme
 
 ### Chrome/Edge and chromium based browsers
 
- - Download the latest zip release and unzip it somewhere
+ - Download repo as zip and extract it somewhere
  - Go to `chrome://extensions/`  or`edge://extensions/`
  - Toggle Developper Mode
  - Click on Load Unpacked
