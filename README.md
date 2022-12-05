@@ -1,6 +1,6 @@
 https://user-images.githubusercontent.com/119897429/205748800-85fbfead-fdee-4c25-a821-a8edc0444b86.mp4
 
-Browser extension that adds new features to FurAffinity, including a new recommendation tab that are based on your favorites and that you can scroll through up to the 300th result. The recommendations are retrieved via an API which is powered on the backend by a neural network trained on scraped data. Also, it adds new tabs for browsing new submissions from your watchlist as well as your favorites all in one place!
+Browser extension that adds new features to FurAffinity, including a new recommendation tab that is based on your favorites and that you can refresh, filter, and scroll through up to the 300th result. The recommendations are retrieved via an API which is powered on the backend by a neural network trained on scraped data. Also, it adds new tabs for browsing new submissions from your watchlist as well as your favorites all in one place!
 
 ## How to install
 
