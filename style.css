@@ -1,0 +1,22 @@
+.recimgs{
+    max-height: 210px;
+}
+
+.warning {
+    padding: 10px;
+    color: black;
+    background:#ffd48a;
+    border-color: #8a5700;
+    width: 100%;
+
+}
+
+#thendone {
+    text-align: center;
+    font-size: 14px;
+}
+
+#thendtwo {
+    text-align: center;
+    font-size: 10px;
+}
