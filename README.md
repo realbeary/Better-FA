@@ -1,6 +1,6 @@
 https://user-images.githubusercontent.com/119897429/205748800-85fbfead-fdee-4c25-a821-a8edc0444b86.mp4
 
-Browser extension that adds new features to FurAffinity, including a new recommendation tab that is based on your favorites and that you can refresh, filter, and scroll through up to the 300th result. The recommendations are retrieved via an API which is powered on the backend by a neural network trained on scraped data. Also, it adds new tabs for browsing new submissions from your watchlist as well as your favorites all in one place!
+Browser extension that adds new features to FurAffinity, including a new recommendation tab that is based on your favorites and that you can refresh, filter, and scroll through up to the 300th result. The recommendations are retrieved via an API which is powered on the backend by a neural network trained on scraped data. Also, it adds new tabs for browsing new submissions from your watchlist as well as your favorites all in one place! Still very much in beta state for now though so please contact me on Discord (https://discord.gg/DF6Vxyh7 / Beary#4996) if you have any issues or suggestions!
 
 ## How to install
 
@@ -21,7 +21,7 @@ Browser extension that adds new features to FurAffinity, including a new recomme
 
 **I can see the tabs but when I click on Recommended it's empty!** 
 
-First, make sure your ad blocker isn't blocking traffic (I'm looking into how to mitigate this). If disabling it has no effect then make sure your profile or your favorites isn't set to private. If it isn't, it's most likely because your fav gallery needs to contain at least one ID in the last 5 pages that is known by the model and its current dictionnary of 9 million submissions, which itself might be possible if you have very few favorites (like fewer than 5) so the only solution is to pretty much just go and like more stuff. If you feel this really shouldn't be the reason though (for instance if you have more than 100 favorites) feel free to ping me on Discord (https://discord.gg/DF6Vxyh7 / Beary#4996) and I'll take a look 
+First, make sure your ad blocker isn't blocking traffic (I'm looking into how to mitigate this). If disabling it has no effect then make sure your profile or your favorites isn't set to private. If it isn't, it's most likely because your fav gallery needs to contain at least one ID in the last 5 pages that is known by the model and its current dictionnary of 9 million submissions, which itself might be possible if you have very few favorites (like fewer than 5) so the only solution is to pretty much just go and like more stuff. If you feel this really shouldn't be the reason though (for instance if you have more than 100 favorites) feel free to ping me on Discord and I'll take a look 
 
 **I'm seeing submissions that are already in my favorites!**
 
