@@ -3,18 +3,13 @@ var old = false
 if (typeof username == 'undefined') {
     old = true //old interface is used
     username = document.getElementsByClassName("dropdown")[1].children[0].children['my-username'].href
-}else{
+} else {
     username = username.children[1].getAttribute("href")
 }
 
 //check if logged in
 if (typeof username != null) {
-    var user = 0
-    if(old == true){
-        user = username.slice(33, -1);
-    }else{
-        user = username.slice(6, -1);
-    }
+    const user = old ? username.slice(33, -1) : username.slice(6, -1);
     var pages = 0
     var watchindex = 0
     var gotwatch = false
@@ -23,7 +18,9 @@ if (typeof username != null) {
     var requestgeneral = true
     var requestmature = false
     var requestadult = false
-    const truedic = { "value": true }
+    const truedic = {
+        "value": true
+    }
     var currentknownartists = []
     var r = document.querySelector(':root');
     var rs = getComputedStyle(r);
@@ -136,11 +133,9 @@ if (typeof username != null) {
     var minGap = 0;
     var gotrecs = false
 
-if(old){
-    legacy = document.getElementById("frontpage")
-}else{
-    legacy = document.getElementsByClassName("content")[0]
-}
+    const legacy = old ?
+        document.getElementById("frontpage") :
+        document.getElementsByClassName("content")[0];
 
     var tabs = document.createElement("div");
     var b1 = document.createElement("button");
@@ -161,139 +156,168 @@ if(old){
     var ranoutdiv = document.createElement("div");
     var ranoutp1 = document.createElement("p");
     var ranoutp2 = document.createElement("p");
+
+    
     ranoutp1.id = "thendone"
     ranoutp2.id = "thendtwo"
     var refreshbutton = document.createElement("button");
-    refreshbutton.innerText = "Refresh"
-    refreshbutton.style.display = ''
-    refreshbutton.onclick = function () {
+
+
+    refreshbutton.innerText = "Refresh";
+    refreshbutton.style.display = '';
+
+    refreshbutton.onclick = function() {
         ranoutdiv.style.display = 'none';
         pages = 0;
         requestrefresh = true;
         gallery.innerHTML = "";
         getRecs();
     }
+    const acheck = document.createElement("input");
+    acheck.type = "checkbox";
+    acheck.id = "acheck";
+    acheck.checked = false;
 
-    var acheck = document.createElement("input");
-    var mcheck = document.createElement("input");
-    var gcheck = document.createElement("input");
-    acheck.type = "checkbox"
-    mcheck.type = "checkbox"
-    gcheck.type = "checkbox"
-    acheck.id = "acheck"
-    mcheck.id = "mcheck"
-    gcheck.id = "gcheck"
-    acheck.checked = false
-    mcheck.checked = false
-    gcheck.checked = true
-    var alabel = document.createElement("label");
-    var mlabel = document.createElement("label");
-    var glabel = document.createElement("label");
-    alabel.setAttribute("for", "acheck")
-    mlabel.setAttribute("for", "mcheck")
-    glabel.setAttribute("for", "gcheck")
-    alabel.innerText = "Adult"
-    mlabel.innerText = "Mature"
-    glabel.innerText = "General"
-    var adiv = document.createElement("div");
-    var mdiv = document.createElement("div");
-    var gdiv = document.createElement("div");
+    const mcheck = document.createElement("input");
+    mcheck.type = "checkbox";
+    mcheck.id = "mcheck";
+    mcheck.checked = false;
 
-    gdiv.append(glabel)
-    gdiv.append(gcheck)
-    mdiv.append(mlabel)
-    mdiv.append(mcheck)
-    adiv.append(alabel)
-    adiv.append(acheck)
+    const gcheck = document.createElement("input");
+    gcheck.type = "checkbox";
+    gcheck.id = "gcheck";
+    gcheck.checked = true;
+
+    const alabel = document.createElement("label");
+    alabel.setAttribute("for", "acheck");
+
+    const mlabel = document.createElement("label");
+    mlabel.setAttribute("for", "mcheck");
+
+    const glabel = document.createElement("label");
+
+    glabel.setAttribute("for", "gcheck");
+    alabel.innerText = "Adult";
+    mlabel.innerText = "Mature";
+    glabel.innerText = "General";
+
+    const adiv = document.createElement("div");
+    const mdiv = document.createElement("div");
+    const gdiv = document.createElement("div");
+
+    gdiv.append(glabel);
+    gdiv.append(gcheck);
+    mdiv.append(mlabel);
+    mdiv.append(mcheck);
+    adiv.append(alabel);
+    adiv.append(acheck);
 
     var checkdiv = document.createElement("div");
-    checkdiv.style.display = "flex"
+    checkdiv.style.display = "flex";
 
-    checkdiv.append(adiv)
-    checkdiv.append(mdiv)
-    checkdiv.append(gdiv)
+    checkdiv.append(adiv);
+    checkdiv.append(mdiv);
+    checkdiv.append(gdiv);
 
     var ignorefromwatcheddiv = document.createElement("div");
+
     var ignorefromwatchedcheck = document.createElement("input");
+    ignorefromwatchedcheck.type = "checkbox";
+    ignorefromwatchedcheck.id = "ignorefromwatchedcheck";
+    ignorefromwatchedcheck.checked = true;
+
     var ignorefromwatchedlabel = document.createElement("label");
-    ignorefromwatchedlabel.setAttribute("for", "gcheck")
-    ignorefromwatchedcheck.type = "checkbox"
-    ignorefromwatchedcheck.id = "ignorefromwatchedcheck"
-    ignorefromwatchedlabel.setAttribute("for", "ignorefromwatchedcheck")
-    ignorefromwatchedlabel.innerText = "Ignore from users already watched"
-    ignorefromwatchedcheck.checked = true
-    ignorefromwatcheddiv.append(ignorefromwatchedlabel)
-    ignorefromwatcheddiv.append(ignorefromwatchedcheck)
+    ignorefromwatchedlabel.setAttribute("for", "ignorefromwatchedcheck");
+    ignorefromwatchedlabel.innerText = "Ignore from users already watched";
+
+    ignorefromwatcheddiv.append(ignorefromwatchedlabel);
+    ignorefromwatcheddiv.append(ignorefromwatchedcheck);
 
     var ignorefromfaveddiv = document.createElement("div");
+
     var ignorefromfavedcheck = document.createElement("input");
+    ignorefromfavedcheck.type = "checkbox";
+    ignorefromfavedcheck.id = "ignorefromfavedcheck";
+    ignorefromfavedcheck.checked = true;
+
     var ignorefromfavedlabel = document.createElement("label");
-    ignorefromfavedcheck.type = "checkbox"
-    ignorefromfavedcheck.id = "ignorefromfavedcheck"
-    ignorefromfavedlabel.setAttribute("for", "ignorefromfavedcheck")
-    ignorefromfavedlabel.innerText = "Ignore from users already faved"
-    ignorefromfavedcheck.checked = true
-    ignorefromfaveddiv.append(ignorefromfavedlabel)
-    ignorefromfaveddiv.append(ignorefromfavedcheck)
+    ignorefromfavedlabel.setAttribute("for", "ignorefromfavedcheck");
+    ignorefromfavedlabel.innerText = "Ignore from users already faved";
+
+    ignorefromfaveddiv.append(ignorefromfavedlabel);
+    ignorefromfaveddiv.append(ignorefromfavedcheck);
 
     var sliderdiv = document.createElement("div");
-    var filterslider = document.createElement("input");
-    filterslider.type = "range"
-    filterslider.value = 75
-    filterslider.min = 40
-    filterslider.max = 100
-    filterslider.style.direction = "rtl"
-    filterslider.id = "popularityslider"
-    var sliderlabel = document.createElement("label");
-    sliderlabel.setAttribute("for", "popularityslider")
-    sliderlabel.innerText = "Popularity filter"
 
-    sliderdiv.append(sliderlabel)
-    sliderdiv.append(filterslider)
+    var filterslider = document.createElement("input");
+    filterslider.type = "range";
+    filterslider.value = 75;
+    filterslider.min = 40;
+    filterslider.max = 100;
+    filterslider.style.direction = "rtl";
+    filterslider.id = "popularityslider";
+
+    var sliderlabel = document.createElement("label");
+    sliderlabel.setAttribute("for", "popularityslider");
+    sliderlabel.innerText = "Popularity filter";
+
+    sliderdiv.append(sliderlabel);
+    sliderdiv.append(filterslider);
 
     var recsettingsdiv = document.createElement("div");
     var recothersettingsdiv = document.createElement("div");
 
+    ranoutdiv.style.display = 'none';
+    errordiv.style.display = 'none';
 
-    ranoutdiv.style.display = 'none'
-    errordiv.style.display = 'none'
     var recpage = document.createElement("div");
-    recpage.id = "recpage"
-    recpage.style.display = 'none'
+    recpage.id = "recpage";
+    recpage.style.display = 'none';
+
     var reccontent = document.createElement("div");
-    reccontent.className = 'content'
+    reccontent.className = 'content';
+
     var recsection = document.createElement("section");
-    recsection.className = "gallery s-250 "
+    recsection.className = "gallery s-250 ";
+
     var recsectionbody = document.createElement("div");
-    recsectionbody.className = 'section-body'
+    recsectionbody.className = 'section-body';
+
     var gallerymargin = document.createElement("div");
-    gallerymargin.className = "gallery-frontpage-submission-margin"
+    gallerymargin.className = "gallery-frontpage-submission-margin";
+
     var gallery = document.createElement("section");
-    gallery.className = "gallery-frontpage-submission"
-
-
+    gallery.className = "gallery-frontpage-submission";
 
     var favpage = document.createElement("div");
-    favpage.id = "favpage"
-    favpage.style.display = 'none'
+    favpage.id = "favpage";
+    favpage.style.display = 'none';
+
     var favcontent = document.createElement("div");
-    favcontent.className = 'content'
+    favcontent.className = 'content';
+
     var favsection = document.createElement("section");
-    favsection.className = "gallery s-250 "
+    favsection.className = "gallery s-250 ";
+
     var favsectionbody = document.createElement("div");
-    favsectionbody.className = 'section-body'
+    favsectionbody.className = 'section-body';
+
     var favgallerymargin = document.createElement("div");
-    favgallerymargin.className = "gallery-frontpage-submission-margin"
+    favgallerymargin.className = "gallery-frontpage-submission-margin";
+
     var favgallery = document.createElement("section");
-    favgallery.className = "gallery-frontpage-submission"
+    favgallery.className = "gallery-frontpage-submission";
 
     var watchpage = document.createElement("div");
-    watchpage.id = "watchpage"
-    watchpage.style.display = 'none'
+    watchpage.id = "watchpage";
+    watchpage.style.display = 'none';
+
     var watchcontent = document.createElement("div");
-    watchcontent.className = 'content'
+    watchcontent.className = 'content';
+
     var watchsection = document.createElement("section");
-    watchsection.className = "gallery s-250 "
+    watchsection.className = "gallery s-250 ";
+
     var watchsectionbody = document.createElement("div");
     watchsectionbody.className = 'section-body'
     var watchgallerymargin = document.createElement("div");
@@ -309,9 +333,11 @@ if(old){
     watchwarningp.style.marginBottom = '0'
     watchwarningsp.innerText = "✖"
     var truevar = true
-    watchwarningsp.onclick = function () {
+    watchwarningsp.onclick = function() {
         this.parentNode.remove();
-        chrome.storage.local.set({ 'gotwatchwarning': truedic });
+        chrome.storage.local.set({
+            'gotwatchwarning': truedic
+        });
         return false;
     }
     watchwarningp.innerText = "This page is automatically generated from your notification box, so don't clear it!"
@@ -345,7 +371,7 @@ if(old){
     watchcontent.append(watchsection)
     watchwarning.append(watchwarningp)
     watchwarning.append(watchwarningsp)
-    chrome.storage.local.get(['gotwatchwarning'], function (result) {
+    chrome.storage.local.get(['gotwatchwarning'], function(result) {
         if (result.gotwatchwarning === undefined) {
             watchpage.prepend(watchwarning)
         }
@@ -353,17 +379,13 @@ if(old){
 
     watchpage.append(watchcontent)
 
-if(old){
-    document.getElementsByTagName("div")[6].append(recpage)
-    document.getElementsByTagName("div")[6].append(favpage)
-    document.getElementsByTagName("div")[6].append(watchpage)
-}else{
-    document.getElementById("columnpage").append(recpage)
-    document.getElementById("columnpage").append(favpage)
-    document.getElementById("columnpage").append(watchpage)
-}
+    const pageContainer = old ?
+        document.getElementsByTagName("div")[6] :
+        document.getElementById("columnpage");
 
-    b1.onclick = function () {
+    pageContainer.append(recpage, favpage, watchpage);
+
+    b1.onclick = function() {
         if (gotrecs == false) {
             if (getRecs()) {
                 gotrecs = true
@@ -375,7 +397,7 @@ if(old){
         watchpage.style.display = 'none'
     };
 
-    b2.onclick = function () {
+    b2.onclick = function() {
         recpage.style.display = 'none'
         legacy.style.display = 'none'
         favpage.style.display = 'none'
@@ -388,7 +410,7 @@ if(old){
     };
 
 
-    b3.onclick = function () {
+    b3.onclick = function() {
         recpage.style.display = 'none'
         legacy.style.display = 'none'
         favpage.style.display = ''
@@ -396,24 +418,20 @@ if(old){
     };
 
 
-    b4.onclick = function () {
+    b4.onclick = function() {
         recpage.style.display = 'none'
         legacy.style.display = ''
         favpage.style.display = 'none'
         watchpage.style.display = 'none'
     };
 
+    tabs.append(b1,b2,b3,b4)
 
-    tabs.append(b1)
-    tabs.append(b2)
-    tabs.append(b3)
-    tabs.append(b4)
-
-if(old){
-    document.getElementsByTagName("div")[6].prepend(tabs)
-}else{
-    document.getElementById("site-content").prepend(tabs)
-}
+    if (old) {
+        document.getElementsByTagName("div")[6].prepend(tabs)
+    } else {
+        document.getElementById("site-content").prepend(tabs)
+    }
 
     var el = document.createElement('html');
     var watchel = document.createElement('html');
@@ -444,34 +462,34 @@ if(old){
         var arrw = watchel.querySelectorAll('figure')
         for (let item of arrw) {
             item.querySelector('label').querySelector('div').style.display = 'none'
-        }
-        for (let item of arrw) {
             watchgallery.append(item)
         }
         gotwatch = true
         return
     }
-
-    window.onscroll = function (ev) {
+    window.onscroll = function(ev) {
         if (((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight)) {
-            if (recpage.style.display == '') {
-                requestrefresh = false
-                getRecs()
-                return
+            if (recpage.style.display === '') {
+                requestrefresh = false;
+                getRecs();
+                return;
             }
-            if (favpage.style.display == '') {
-                if (gotallfavs == false) {
-                    updatefavpage()
-                    return
-                }
-            } if (watchpage.style.display == '') {
-                if (gotwatch == false) {
-                    updatewatchpage(watchindex)
-                }
-                watchindex = watchindex + 1
-                return
 
+            if (favpage.style.display === '') {
+                if (gotallfavs === false) {
+                    updatefavpage();
+                    return;
+                }
+            }
+
+            if (watchpage.style.display === '') {
+                if (gotwatch === false) {
+                    updatewatchpage(watchindex);
+                }
+                watchindex = watchindex + 1;
+                return;
             }
         }
     };
+
 }
